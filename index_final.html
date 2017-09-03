@@ -17,6 +17,7 @@
 			width: 600px;
 			font-size: 15px;
 		}
+		/*To remove the grid lines from the plot */
 		.tick line{
   			display: none;
 		}
@@ -27,6 +28,8 @@
 	<h1>Survival Rates on the Titanic</h1>
 	<p>The sinking of titanic on the night of 14th April 1912, was one of the deadliest peacetime maritime disasters in history. Imagine yourself to be on the ship amidst the disaster, do you think you can survive ? Here is a visualization that will help you better understand the factors that led to the survival or demise of the individuals on the ship.</p>
 	
+	<!-- Adding buttons for various plots -->
+
 	<button id="btn1">Survival by Age</button>
 	<button id="btn2">Survival by Class</button>
 	<button id="btn3">Survival by Sex</button>
@@ -47,7 +50,9 @@
 				x.fontSize="12px";
 				y.fontSize="12px";
 				y.title="Survival Percentage";
+				// Used to clear the text from the previous frame
 				s.afterDraw = function (shape, data) {
+					// Get the shape as a d3 selection
 					var s = d3.select(shape),
 					rect = {
 						x: parseFloat(s.attr("x")),
@@ -55,21 +60,27 @@
 						width: parseFloat(s.attr("width")),
 						height: parseFloat(s.attr("height"))
 					};
+					// Only label bars where the text can fit
 					if (rect.height >= 8) {
+						// Add a text label for the value
 						svg.append("text")
+						// Position at the center of the bar
 						.attr("x", rect.x + rect.width / 2)
 						.attr("y", rect.y + rect.height / 2 + 3.5)
+						// Center align
 						.style("text-anchor", "middle")
 						.style("font-size", "10px")
 						.style("font-family", "sans-serif")
 						.style("opacity", 0.6)
+						// Prevent text cursor on hover and allow tooltips
 						.style("pointer-events", "none")
+						// Format the number to show integers only
 						.text(d3.format(",")(data.yValue));
 					}
 				};
 				myChart.defaultColors = [
-					new dimple.color("#D35454", 1), // red
-					new dimple.color("#83CB6B", 1), // green
+          			new dimple.color("#D35454", 1), // red color for deaths
+					new dimple.color("#83CB6B", 1), // green color for survived
 				];
 			myChart.addLegend(60, 10, 510, 20, "right");
 			myChart.draw(1000);
@@ -91,29 +102,37 @@
 					x.fontSize="12px";
 					y.fontSize="12px";
 					y.title="Survival Percentage";
-					s.afterDraw = function (shape, data) {
-						var s = d3.select(shape),
-						rect = {
-							x: parseFloat(s.attr("x")),
-							y: parseFloat(s.attr("y")),
-							width: parseFloat(s.attr("width")),
-							height: parseFloat(s.attr("height"))
-						};
-						if (rect.height >= 8) {
-							svg.append("text")
-							.attr("x", rect.x + rect.width / 2)
-							.attr("y", rect.y + rect.height / 2 + 3.5)
-							.style("text-anchor", "middle")
-							.style("font-size", "10px")
-							.style("font-family", "sans-serif")
-							.style("opacity", 0.6)
-							.style("pointer-events", "none")
-							.text(d3.format(",")(data.yValue));
-						}
+					// Used to clear the text from the previous frame
+				s.afterDraw = function (shape, data) {
+					// Get the shape as a d3 selection
+					var s = d3.select(shape),
+					rect = {
+						x: parseFloat(s.attr("x")),
+						y: parseFloat(s.attr("y")),
+						width: parseFloat(s.attr("width")),
+						height: parseFloat(s.attr("height"))
+					};
+					// Only label bars where the text can fit
+					if (rect.height >= 8) {
+						// Add a text label for the value
+						svg.append("text")
+						// Position at the center of the bar
+						.attr("x", rect.x + rect.width / 2)
+						.attr("y", rect.y + rect.height / 2 + 3.5)
+						// Center align
+						.style("text-anchor", "middle")
+						.style("font-size", "10px")
+						.style("font-family", "sans-serif")
+						.style("opacity", 0.6)
+						// Prevent text cursor on hover and allow tooltips
+						.style("pointer-events", "none")
+						// Format the number to show integers only
+						.text(d3.format(",")(data.yValue));
+					}
 					};
 					myChart.defaultColors = [
-          			new dimple.color("#D35454", 1), // red
-					new dimple.color("#83CB6B", 1), // green
+          			new dimple.color("#D35454", 1), // red color for deaths
+					new dimple.color("#83CB6B", 1), // green color for survived
         			];
         			myChart.addLegend(60, 10, 510, 20, "right");
         			myChart.draw(1000);
@@ -135,29 +154,37 @@
 					x.fontSize="12px";
 					y.fontSize="12px";
 					y.title="Survival Percentage";
-					s.afterDraw = function (shape, data) {
-						var s = d3.select(shape),
-						rect = {
-							x: parseFloat(s.attr("x")),
-							y: parseFloat(s.attr("y")),
-							width: parseFloat(s.attr("width")),
-							height: parseFloat(s.attr("height"))
-						};
-						if (rect.height >= 8) {
-							svg.append("text")
-							.attr("x", rect.x + rect.width / 2)
-							.attr("y", rect.y + rect.height / 2 + 3.5)
-							.style("text-anchor", "middle")
-							.style("font-size", "10px")
-							.style("font-family", "sans-serif")
-							.style("opacity", 0.6)
-							.style("pointer-events", "none")
-							.text(d3.format(",")(data.yValue));
-						}
+					// Used to clear the text from the previous frame
+				s.afterDraw = function (shape, data) {
+					// Get the shape as a d3 selection
+					var s = d3.select(shape),
+					rect = {
+						x: parseFloat(s.attr("x")),
+						y: parseFloat(s.attr("y")),
+						width: parseFloat(s.attr("width")),
+						height: parseFloat(s.attr("height"))
+					};
+					// Only label bars where the text can fit
+					if (rect.height >= 8) {
+						// Add a text label for the value
+						svg.append("text")
+						// Position at the center of the bar
+						.attr("x", rect.x + rect.width / 2)
+						.attr("y", rect.y + rect.height / 2 + 3.5)
+						// Center align
+						.style("text-anchor", "middle")
+						.style("font-size", "10px")
+						.style("font-family", "sans-serif")
+						.style("opacity", 0.6)
+						// Prevent text cursor on hover and allow tooltips
+						.style("pointer-events", "none")
+						// Format the number to show integers only
+						.text(d3.format(",")(data.yValue));
+					}
 					};
 					myChart.defaultColors = [
-          			new dimple.color("#D35454", 1), // red
-					new dimple.color("#83CB6B", 1), // green
+          			new dimple.color("#D35454", 1), // red color for deaths
+					new dimple.color("#83CB6B", 1), // green color for survived
         			];
         			myChart.addLegend(60, 10, 510, 20, "right");
         			myChart.draw(1000);
@@ -179,29 +206,37 @@
 					x.fontSize="12px";
 					y.fontSize="12px";
 					y.title="Survival Percentage";
-					s.afterDraw = function (shape, data) {
-						var s = d3.select(shape),
-						rect = {
-							x: parseFloat(s.attr("x")),
-							y: parseFloat(s.attr("y")),
-							width: parseFloat(s.attr("width")),
-							height: parseFloat(s.attr("height"))
-						};
-						if (rect.height >= 8) {
-							svg.append("text")
-							.attr("x", rect.x + rect.width / 2)
-							.attr("y", rect.y + rect.height / 2 + 3.5)
-							.style("text-anchor", "middle")
-							.style("font-size", "10px")
-							.style("font-family", "sans-serif")
-							.style("opacity", 0.6)
-							.style("pointer-events", "none")
-							.text(d3.format(",")(data.yValue));
-						}
+					// Used to clear the text from the previous frame
+				s.afterDraw = function (shape, data) {
+					// Get the shape as a d3 selection
+					var s = d3.select(shape),
+					rect = {
+						x: parseFloat(s.attr("x")),
+						y: parseFloat(s.attr("y")),
+						width: parseFloat(s.attr("width")),
+						height: parseFloat(s.attr("height"))
+					};
+					// Only label bars where the text can fit
+					if (rect.height >= 8) {
+						// Add a text label for the value
+						svg.append("text")
+						// Position at the center of the bar
+						.attr("x", rect.x + rect.width / 2)
+						.attr("y", rect.y + rect.height / 2 + 3.5)
+						// Center align
+						.style("text-anchor", "middle")
+						.style("font-size", "10px")
+						.style("font-family", "sans-serif")
+						.style("opacity", 0.6)
+						// Prevent text cursor on hover and allow tooltips
+						.style("pointer-events", "none")
+						// Format the number to show integers only
+						.text(d3.format(",")(data.yValue));
+					}
 					};
 					myChart.defaultColors = [
-          			new dimple.color("#D35454", 1), // red
-					new dimple.color("#83CB6B", 1), // green
+          			new dimple.color("#D35454", 1), // red color for deaths
+					new dimple.color("#83CB6B", 1), // green color for survived
         			];
         			myChart.addLegend(60, 10, 510, 20, "right");
         			myChart.draw(1000);
@@ -224,29 +259,37 @@
 					x.fontSize="12px";
 					y.fontSize="12px";
 					y.title="Survival Percentage";
-					s.afterDraw = function (shape, data) {
-						var s = d3.select(shape),
-						rect = {
-							x: parseFloat(s.attr("x")),
-							y: parseFloat(s.attr("y")),
-							width: parseFloat(s.attr("width")),
-							height: parseFloat(s.attr("height"))
-						};
-						if (rect.height >= 8) {
-							svg.append("text")
-							.attr("x", rect.x + rect.width / 2)
-							.attr("y", rect.y + rect.height / 2 + 3.5)
-							.style("text-anchor", "middle")
-							.style("font-size", "10px")
-							.style("font-family", "sans-serif")
-							.style("opacity", 0.6)
-							.style("pointer-events", "none")
-							.text(d3.format(",")(data.yValue));
-						}
+					// Used to clear the text from the previous frame
+				s.afterDraw = function (shape, data) {
+					// Get the shape as a d3 selection
+					var s = d3.select(shape),
+					rect = {
+						x: parseFloat(s.attr("x")),
+						y: parseFloat(s.attr("y")),
+						width: parseFloat(s.attr("width")),
+						height: parseFloat(s.attr("height"))
+					};
+					// Only label bars where the text can fit
+					if (rect.height >= 8) {
+						// Add a text label for the value
+						svg.append("text")
+						// Position at the center of the bar
+						.attr("x", rect.x + rect.width / 2)
+						.attr("y", rect.y + rect.height / 2 + 3.5)
+						// Center align
+						.style("text-anchor", "middle")
+						.style("font-size", "10px")
+						.style("font-family", "sans-serif")
+						.style("opacity", 0.6)
+						// Prevent text cursor on hover and allow tooltips
+						.style("pointer-events", "none")
+						// Format the number to show integers only
+						.text(d3.format(",")(data.yValue));
+					}
 					};
 					myChart.defaultColors = [
-          			new dimple.color("#D35454", 1), // red
-					new dimple.color("#83CB6B", 1), // green
+          			new dimple.color("#D35454", 1), // red color for deaths
+					new dimple.color("#83CB6B", 1), // green color for survived
         			];
         			myChart.addLegend(60, 10, 510, 20, "right");
         			myChart.draw(1000);
